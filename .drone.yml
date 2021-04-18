@@ -1,0 +1,27 @@
+###
+kind: pipeline
+type: docker
+name: linux-amd64
+
+platform:
+  arch: amd64
+  os: linux
+
+steps:
+
+- name: publish to Dockerhub image
+  image: plugins/docker
+  settings:
+    auto_tag: true
+    repo: thomaslacaze/badtracker
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+  when:
+    event:
+    - push
+    - tag
+    branch:
+    - master
+    - main
