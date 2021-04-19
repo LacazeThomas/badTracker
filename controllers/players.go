@@ -8,7 +8,7 @@ import (
 )
 
 // PATCH /match/:MatchId/winners
-// Add set to match
+// Add winners to match
 func ModifyWinners(c *gin.Context) {
 	// Get model if exist
 	var match models.Match
@@ -28,7 +28,7 @@ func ModifyWinners(c *gin.Context) {
 }
 
 // PATCH /match/:MatchId/losers
-// Add set to match
+// Add losers to match
 func ModifyLosers(c *gin.Context) {
 	// Get model if exist
 	var match models.Match
