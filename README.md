@@ -1,1 +1,1 @@
-# badTracker
+# Badminton API Tracker
