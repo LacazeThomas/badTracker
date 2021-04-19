@@ -1,9 +1,8 @@
 package controllers
 
 import (
-	"log"
-
 	"github.com/lacazethomas/badTracker/models"
+	"go.uber.org/zap"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -19,13 +18,13 @@ func SetupDatabase(dsn string) {
 	database, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
-		log.Panic(err)
+		zap.S().Panic(err)
 	}
 
 	err = database.AutoMigrate(&models.Match{}, &models.MatchLocation{}, &models.Set{}, &models.Winner{}, &models.Loser{})
 
 	if err != nil {
-		log.Panic("migration failed")
+		zap.S().Panic(err, "migration failed")
 	}
 
 	DB = DatabaseDetails{database}

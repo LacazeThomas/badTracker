@@ -45,6 +45,7 @@ func main() {
 	// Run the server
 	err = r.Run()
 	if err != nil {
-		log.Println("Unable to start web server")
+		zap.S().Panic("Unable to start web server")
 	}
+
 }
