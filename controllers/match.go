@@ -8,6 +8,7 @@ import (
 )
 
 type CreateMatchInput struct {
+	Name     string               `json:"name" binding:"required"`
 	Location models.MatchLocation `json:"location" binding:"required"`
 }
 
