@@ -45,7 +45,7 @@ func CreateMatch(c *gin.Context) {
 	}
 
 	// Create match
-	match := models.Match{Location: input.Location}
+	match := models.Match{Location: input.Location, Name: input.Name}
 	DB.Create(&match)
 
 	c.JSON(http.StatusOK, match)
