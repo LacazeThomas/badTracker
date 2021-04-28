@@ -21,7 +21,7 @@ func SetupDatabase(dsn string) {
 		zap.S().Panic(err)
 	}
 
-	err = database.AutoMigrate(&models.Match{}, &models.MatchLocation{}, &models.Set{}, &models.Winner{}, &models.Loser{})
+	err = database.AutoMigrate(&models.Match{}, &models.MatchLocation{}, &models.Set{}, &models.Player1{}, &models.Player2{})
 
 	if err != nil {
 		zap.S().Panic(err, "migration failed")
@@ -31,5 +31,5 @@ func SetupDatabase(dsn string) {
 }
 
 func (DB DatabaseDetails) PreloadAll() *gorm.DB {
-	return DB.Preload("Location").Preload("Winners").Preload("Losers").Preload("Sets")
+	return DB.Preload("Location").Preload("Team1").Preload("Team2").Preload("Sets")
 }

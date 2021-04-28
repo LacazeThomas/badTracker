@@ -62,8 +62,8 @@ func DeleteMath(c *gin.Context) {
 	}
 
 	DB.Model(&match).Association("Location").Clear()
-	DB.Model(&match).Association("Winners").Clear()
-	DB.Model(&match).Association("Losers").Clear()
+	DB.Model(&match).Association("Team1").Clear()
+	DB.Model(&match).Association("Team2").Clear()
 	DB.Model(&match).Association("Sets").Clear()
 	DB.Delete(&match)
 

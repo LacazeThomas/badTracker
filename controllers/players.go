@@ -7,9 +7,9 @@ import (
 	"github.com/lacazethomas/badTracker/models"
 )
 
-// PATCH /match/:MatchId/winners
-// Add winners to match
-func ModifyWinners(c *gin.Context) {
+// PATCH /match/:MatchId/team1
+// Add Team1 to match
+func ModifyTeam1(c *gin.Context) {
 	// Get model if exist
 	var match models.Match
 	if err := DB.PreloadAll().Where("id = ?", c.Param("MatchId")).First(&match).Error; err != nil {
@@ -17,19 +17,19 @@ func ModifyWinners(c *gin.Context) {
 		return
 	}
 
-	var player = []models.Winner{}
+	var player = []models.Player1{}
 	if err := c.ShouldBindJSON(&player); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	DB.Model(&match).Association("Winners").Append(&player)
+	DB.Model(&match).Association("Team1").Append(&player)
 	c.JSON(http.StatusOK, match)
 }
 
-// PATCH /match/:MatchId/losers
-// Add losers to match
-func ModifyLosers(c *gin.Context) {
+// PATCH /match/:MatchId/team2
+// Add Team2 to match
+func ModifyTeam2(c *gin.Context) {
 	// Get model if exist
 	var match models.Match
 	if err := DB.PreloadAll().Where("id = ?", c.Param("MatchId")).First(&match).Error; err != nil {
@@ -37,12 +37,12 @@ func ModifyLosers(c *gin.Context) {
 		return
 	}
 
-	var player = []models.Loser{}
+	var player = []models.Player2{}
 	if err := c.ShouldBindJSON(&player); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	DB.Model(&match).Association("Losers").Append(&player)
+	DB.Model(&match).Association("Team2").Append(&player)
 	c.JSON(http.StatusOK, match)
 }

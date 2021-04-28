@@ -38,8 +38,8 @@ func main() {
 	r.GET("/matches/:MatchId", controllers.FindMatch)
 	r.POST("/matches", controllers.CreateMatch)
 	r.DELETE("/matches/:MatchId", controllers.DeleteMath)
-	r.PATCH("/matches/:MatchId/losers", controllers.ModifyLosers)
-	r.PATCH("/matches/:MatchId/winners", controllers.ModifyWinners)
+	r.PATCH("/matches/:MatchId/team1", controllers.ModifyTeam1)
+	r.PATCH("/matches/:MatchId/team2", controllers.ModifyTeam2)
 	r.PATCH("/matches/:MatchId/sets", controllers.AddSet)
 
 	// Run the server

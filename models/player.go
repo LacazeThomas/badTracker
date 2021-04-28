@@ -1,10 +1,10 @@
 package models
 
-type Winner struct {
+type Player1 struct {
 	Player `json:"player" `
 }
 
-type Loser struct {
+type Player2 struct {
 	Player `json:"player" `
 }
 
