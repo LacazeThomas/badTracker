@@ -17,7 +17,7 @@ func ModifyTeam1(c *gin.Context) {
 		return
 	}
 
-	var player = []models.Player1{}
+	var player = []models.Player{}
 	if err := c.ShouldBindJSON(&player); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -37,7 +37,7 @@ func ModifyTeam2(c *gin.Context) {
 		return
 	}
 
-	var player = []models.Player2{}
+	var player = []models.Player{}
 	if err := c.ShouldBindJSON(&player); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

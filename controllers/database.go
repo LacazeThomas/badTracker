@@ -21,7 +21,7 @@ func SetupDatabase(dsn string) {
 		zap.S().Panic(err)
 	}
 
-	err = database.AutoMigrate(&models.Match{}, &models.MatchLocation{}, &models.Set{}, &models.Player1{}, &models.Player2{})
+	err = database.AutoMigrate(&models.Match{}, &models.MatchLocation{}, &models.Set{}, &models.Player{}, &models.Player{})
 
 	if err != nil {
 		zap.S().Panic(err, "migration failed")
