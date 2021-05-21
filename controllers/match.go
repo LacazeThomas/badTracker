@@ -7,11 +7,6 @@ import (
 	"github.com/lacazethomas/badTracker/models"
 )
 
-type CreateMatchInput struct {
-	Name     string               `json:"name" binding:"required"`
-	Location models.MatchLocation `json:"location" binding:"required"`
-}
-
 // GET /matches
 // Find all matches
 func FindMatches(c *gin.Context) {
@@ -38,17 +33,16 @@ func FindMatch(c *gin.Context) {
 // Create new match
 func CreateMatch(c *gin.Context) {
 	// ValMatchIdate input
-	var input CreateMatchInput
+	var input models.Match
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	// Create match
-	match := models.Match{Location: input.Location, Name: input.Name}
-	DB.Create(&match)
+	DB.Create(&input)
 
-	c.JSON(http.StatusOK, match)
+	c.JSON(http.StatusOK, input)
 }
 
 // DELETE /match/:MatchId
